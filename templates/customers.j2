@@ -1,0 +1,74 @@
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Paw and Order</title>
+</head>
+<body class="customers">
+
+  <nav>    <div class="title">
+      <h1><i class="fa fa-paw"></i></i>Paw and Order<i class="fa fa-gavel"></i></h1>
+  </div>
+  <div class="links">
+      <a href="/">Home</a>
+      ~
+      <a href="customers">Customers</a>
+      ~
+      <a href="dogs">Dogs</a>
+      ~
+      <a href="employees">Employees</a>
+      ~
+      <a href="commandsLearned">Commands Learned By Dog</a>
+      ~
+      <a href="commands">Commands</a>
+      ~
+      <a href="trainingSessions">TrainingSessions</a>
+  </div>
+  </nav>
+  <h1>Paw and Order Customers</h1>
+
+{# part of this code is copied from or based off a cited source.  Please see readme for full citation #}
+
+  <table>
+    {% if data %}
+      <tr>
+        <th>Customer ID</th>
+        <th>Customer Name</th>
+        <th>Alternate Name</th>
+        <th>Phone Number</th>
+        <th>Email Address</th>
+        <th>Edit</th>
+         <th>Delete</th>
+
+      </tr>
+      <tr>
+        {% for item in data %}
+        <tr>
+          <!-- Then iterate through every key in the current item dictionary -->
+                      {% for key in item.keys() %}
+
+          <!-- Create a <td> element with the value of that key in it -->
+          <td> {{item[key]}} </td>
+                      {% endfor %}
+
+                      <!-- Edit/delete buttons -->
+          <td><a href="editCustomer/{{item.customerID}}" class="btn btn-default"><i class="fa fa-paw"></i></a></td>
+          <td><a href="deleteCustomer/{{item.customerID}}" class="btn btn-default"><i class="fa fa-trash"></i></a></td>
+
+        </tr>
+                  {% endfor %}
+          {% endif %}
+      </tr>
+    </table>
+    <form class="form" id="insertCustomer" action="/customers" method="post">
+      <h2>Input New Customer:</h2>
+      <input type="text" id="customerName" name="customerName" required placeholder="Customer Name">
+      <input type="text" id="altName" name = "altName" placeholder="Alternate Name">
+      <input type="tel" id="phone" name = "phone" placeholder="Phone Number" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="XXX-XXX-XXXX" />
+      <input type="email" id="email" name = "email" placeholder="Email">
+      <button class="button" id=textButton id="Add Customer" value="Add Customer" name="Add Customer">Submit</button>
+    </form>
+</body>

@@ -1,0 +1,97 @@
+*{
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+body{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+body.commands{
+    background-image: url("img_commands.jpg");
+}
+
+body.commandsLearned{
+    background-image: url("img_commandsLearned.jpg");
+}
+
+body.customers{
+    background-image: url("img_customers.jpg");
+}
+
+body.dogs{
+    background-image: url("img_dogs.jpg");
+}
+
+body.editCustomer{
+    background-image: url("img_editCustomer.jpg");
+}
+
+body.editDog{
+    background-image: url("img_editDog.jpg");
+}
+
+body.employees{
+    background-image: url("img_employees.jpg");
+}
+
+body.home{
+    background-image: url("img_home.jpg");
+}
+
+body.trainingSessions{
+    background-image: url("img_trainingSessions.jpg");
+}
+
+img{
+    max-width: 40%;
+    height: auto;
+    float: right;
+}
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    background-color: rgb(203, 212, 203);
+}
+
+.title{
+    color:rgb(43, 45, 51)
+}
+
+.links{
+    justify-content: space-around;
+    align-items: right;
+    width: 60%;
+}
+
+table, th, td {
+    background-color: white;
+    justify-content: center;
+    border: 1px solid;
+    margin: 30px;
+    padding: 5px;
+  }
+
+th.trainingSessions{
+    inline-size: 250px;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.form{
+    margin: 30px;
+    align-items: center;
+  }
+
+p, h1{
+    padding: 10px;
+}
+

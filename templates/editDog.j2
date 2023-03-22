@@ -1,0 +1,66 @@
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Paw and Order</title>
+</head>
+<body class="editDog">
+
+  <nav>    <div class="title">
+      <h1><i class="fa fa-paw"></i></i>Paw and Order<i class="fa fa-gavel"></i></h1>
+  </div>
+  <div class="links">
+      <a href="/">Home</a>
+      ~
+      <a href="/customers">Customers</a>
+      ~
+      <a href="/dogs">Dogs</a>
+      ~
+      <a href="/employees">Employees</a>
+      ~
+      <a href="/commandsLearned">Commands Learned By Dog</a>
+      ~
+      <a href="/commands">Commands</a>
+      ~
+      <a href="/trainingSessions">TrainingSessions</a>
+  </div>
+  </nav>
+  <h1>Edit Dog</h1>
+
+{# part of this code is copied from or based off a cited source.  Please see readme for full citation #}
+
+<div class="form">
+  <form class="form" id="editDog" action="/editDog/{{data[0].dogID}}" method="post">
+      <h2>Edit Dog Information:</h2>
+      <input type="hidden" value="{{data[0].dogID}}" class="form-control" id="dogID" name="dogID" required>
+      <select name="customerID" required>
+      {% for customer in customerData %}
+      {% if customer['customerID'] == data[0].customerID %}
+      <option id="customerID" value={{customer['customerID']}}>{{customer['customerName']}} </option>
+      {% endif %}
+      {% endfor %}
+      {% for customer in customerData %}
+      {% if customer['customerID'] != data[0].customerID %}
+          <option id="customerID" value={{customer['customerID']}}>{{customer['customerName']}} </option>        {% endif %}
+        {% endfor %}
+      </select>
+      <input type="text" id="dogName" name = "dogName" value="{{data[0].dogName}}">
+      <input type= "date" id="dogBirthday" name = "dogBirthday" value="{{data[0].dogBirthday}}" required>
+      <select name="active" required>
+      {% if data[0].active == 1 %}
+        <option id="active" value="active" value=1> Yes </option>
+        <option id="active" required name="active" value=0>No</option>
+      {% else %}
+        <option id="active" value="active" value=0> No </option>
+        <option id="active" required name="active" value=1>Yes</option>
+        {% endif %}
+        </select>
+      <button class="button" id=textButton id="Edit Dog" value="editDog" name="editDog">Submit</button>
+    </form>
+    </div>
+
+</body>

@@ -1,0 +1,101 @@
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Paw and Order</title>
+</head>
+<body class="trainingSessions">
+
+    <nav>    <div class="title">
+        <h1><i class="fa fa-paw"></i></i>Paw and Order<i class="fa fa-gavel"></i></h1>
+    </div>
+    <div class="links">
+        <a href="/">Home</a>
+        ~
+        <a href="customers">Customers</a>
+        ~
+        <a href="dogs">Dogs</a>
+        ~
+        <a href="employees">Employees</a>
+        ~
+        <a href="commandsLearned">Commands Learned By Dog</a>
+        ~
+        <a href="commands">Commands</a>
+        ~
+        <a href="trainingSessions">TrainingSessions</a>
+    </div>
+    </nav>
+    <h1>Paw and Order Training Sessions</h1>
+
+{# part of this code is copied from or based off a cited source.  Please see readme for full citation #}
+
+    <table>
+      {% if data %}
+        <tr>
+          <th>Customer</th>
+          <th>Dog</th>
+          <th>Employee</th>
+          <th>Session Date</th>
+          <th class="trainingSessions">Notes</th>
+        </tr>
+        <tr>
+                  {% for item in data %}
+          <tr>
+            <!-- Then iterate through every key in the current item dictionary -->
+                        {% for key in item.keys() %}
+
+                        <!-- Create a <td> element with the value of that key in it -->
+                          {% if key == "dogID" and item[key] %}
+                          {% for dog in dogData %}
+                          {% if dog['dogID'] == item[key] %}
+                          <td> {{dog['dogName']}} </td>
+                          {% endif %}
+                          {% endfor %}
+              
+                          {% else %}
+                          <td> {{item[key]}} </td>
+                          {% endif %}
+                                      {% endfor %}
+              
+                        </tr>
+                                  {% endfor %}
+                          {% endif %}
+        </tr>
+      </table>
+
+    </head>
+    <form class="form" id="insertTrainingSessions" action="/trainingSessions" method="post">
+      <h2>Input New Training Session:</h2>
+      <select name="customerID" >
+      <option value=""> Customer Name </option>
+      {% for customer in customerData %}
+        <option id="customerID" name="customerID" value={{customer['customerID']}}>{{customer['customerName']}}</option>
+        {% endfor %}
+      </select>
+
+      <select name="dogID" required>
+      <option value=""> Dog Name </option>
+      <option value="">-none-</option>
+      {% for dog in dogData if dog['active'] %}
+        <option id="dogID" required name="dogID" value={{dog['dogID']}}>{{dog['dogName']}}</option>
+      {% endfor %}
+
+      </select>
+
+      <select name="employeeID" required>
+      <option value=""> Employee Name </option>
+      {% for employee in employeeData %}
+        <option id="employeeID" name="employeeID" value={{employee['employeeID']}}>{{employee['employeeName']}}</option>
+        {% endfor %}
+      </select>
+
+      <input type="date" id="sessionDate" name="sessionDate" required placeholder="Session Date">
+      <input type="text" id="notes" name="notes" required placeholder="notes">
+      <button class="button" id=textButton id="Add Training Session" value="Add Training Session" name="Add Training Session">Submit</button>
+    </form>
+</body>
