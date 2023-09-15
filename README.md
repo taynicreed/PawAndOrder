@@ -20,3 +20,11 @@ Background images sourced from https://www.pexels.com/
 
 5. Training Sessions ~ Create, Read
 ![](Training.gif)
+
+Entity Relationship Diagram
+
+![PawAndOrderERD](https://github.com/taynicreed/PawAndOrder/assets/81502909/3e6ea7bf-d37e-4ff1-8572-f0ce1d99a882)
+
+Visual Schema
+![VisualSchema_PawAndOrder](https://github.com/taynicreed/PawAndOrder/assets/81502909/b2c5a531-5b66-4647-9ac5-e011af91631a)
+
